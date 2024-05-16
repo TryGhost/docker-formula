@@ -76,6 +76,12 @@ docker-compose-ng-{{ id }}-running:
                 {%- endif %}
             {%- endfor %}
         {%- endif %}
+        {%- if 'labels' in container %}
+    - labels:
+            {%- for label in container.labels %}
+        - {{ label }}
+            {%- endfor %}
+        {%- endif %}
         {%- if 'volumes' in container %}
     - binds:
             {%- for bind in container.volumes %}
