@@ -134,6 +134,12 @@ docker-compose-ng-{{ id }}-running:
                 {%- endif %}
             {%- endfor %}
         {%- endif %}
+        {%- if 'extra_hosts' in container %}
+    - extra_hosts:
+            {%- for extra_host in container.extra_hosts %}
+        - "{{ extra_host }}"
+            {%- endfor %}
+        {%- endif %}
     - require:
       - docker_image: docker-compose-ng-{{ id }}-present
         {%- if required_containers is defined %}
