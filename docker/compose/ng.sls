@@ -140,6 +140,9 @@ docker-compose-ng-{{ id }}-running:
         - "{{ extra_host }}"
             {%- endfor %}
         {%- endif %}
+        {%- if 'mem_limit' in container %}
+    - mem_limit: {{ container.mem_limit }}
+        {%- endif %}
     - require:
       - docker_image: docker-compose-ng-{{ id }}-present
         {%- if required_containers is defined %}
